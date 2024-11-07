@@ -1,15 +1,14 @@
 package db_client
 
 import (
-	"database/sql"
-
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
 
-var DBClient *sql.DB
+var DBClient *sqlx.DB
 
 func InitializeDBConnection() {
-	db, err := sql.Open("postgres", "postgres://postgres:test123@localhost:5432/postgres?sslmode=disable")
+	db, err := sqlx.Open("postgres", "postgres://postgres:test123@localhost:5432/postgres?sslmode=disable")
 	if err != nil {
 		panic(err.Error())
 	}
